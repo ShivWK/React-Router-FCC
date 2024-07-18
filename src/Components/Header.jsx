@@ -7,9 +7,13 @@ export default function Header(){
             <Link className="site-logo" to="/">#VanLife</Link>
             <nav>
                 <NavLink to='/' style={({isActive})=>{ 
-                    return {color : isActive ? 'blue' : '' }}}>Home</NavLink>
+                    return {color : isActive ? 'blue' : '',textDecoration : 'none' }}}>Home</NavLink>
                 <NavLink to='/about' style={({isActive})=>{ 
-                    return {color : isActive ? 'blue' : '' }}}>About</NavLink>
+                    return {color : isActive ? 'blue' : '',textDecoration : 'none' }}}>About</NavLink>
+                <NavLink to='/van' style={({isActive})=>{ 
+                    return {color : isActive ? 'blue' : '',
+                        textDecoration : 'none'
+                     }}}>Vans</NavLink>
             </nav>
         </header>
     )
