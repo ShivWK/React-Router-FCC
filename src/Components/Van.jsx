@@ -24,7 +24,7 @@ export default function Van(){
     }, [])
     
     const vansList = vanData.map((data)=>
-          ( <div key={data.id} className='w-48 md:w-60 p-1'>
+          ( <div key={data.id} className='w-full md:w-60 p-1'>
             <img className='rounded-md' src={data.imageUrl} alt="Van Image" />
             <h2 className='font-semibold'>{data.name}</h2>
             <p>{data.price}/day</p>
@@ -33,8 +33,8 @@ export default function Van(){
     );
 
     return (
-        <div className='p-2 border-2'>
-            <div className='flex gap-2 md:gap-3 flex-wrap mx-auto justify-between'>
+        <div className='p-2 mx-auto w-full'>
+            <div className='flex gap-2 md:gap-3 flex-wrap mx-auto justify-between w-full'>
                 {loading? <p>Loading...</p> : vansList}
             </div>
         </div>
