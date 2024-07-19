@@ -29,6 +29,8 @@ export default function Van(){
             })
     }, [])
     
+//optimise the app we can cash the the data came from api so that it sould not fetch data each time when user come here , mostly in van detail page an van page navigation
+    
     const vansList = vanData.map((data)=>
           ( <div key={data.id} className='w-full md:w-60 p-1'>
             <Link to={`/van/${data.id}`}><img className='rounded-md' src={data.imageUrl} alt="Van Image" /></Link>

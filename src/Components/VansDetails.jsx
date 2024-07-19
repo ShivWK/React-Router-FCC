@@ -24,13 +24,14 @@ export default function VansDetails(){
     // console.log(specificVan)
     return (
         <>
-         { Loading ? <h1 className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</h1> : <div className='w-fit '>
+         { Loading ? <h1 className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</h1> : <div className='w-fit my-10'>
             <img className='w-96 mx-auto rounded-md' src={specificVan.imageUrl} alt="van picture" />
             <div className='mx-auto w-11/12'>
                 <h2 className='text-3xl font-semibold mx-auto my-4 text-center'>{specificVan.name}</h2>
                 <p>{specificVan.description}</p>
-                <p className='text-xl font-semibold my-4'>${specificVan.price}/day</p>
-                <div className={`flex my-1 items-center justify-center px-4 py-2 rounded-md text-white ${specificVan.type == 'simple' ? 'bg-[#b43333]' : (specificVan.type == 'luxury' ? 'bg-[#0c0702]' : 'bg-[rgb(4,80,35)]')} w-fit`}>{specificVan.type}</div>
+                <span className='text-xl font-semibold my-4 mr-3'>${specificVan.price}/day</span>
+                <span className={`inline-flex my-1 items-center justify-center px-4 py-1 rounded-md text-white ${specificVan.type == 'simple' ? 'bg-[#b43333]' : (specificVan.type == 'luxury' ? 'bg-[#0c0702]' : 'bg-[rgb(4,80,35)]')} w-fit`}>{specificVan.type}</span>
+                <button className={`my-1 justify-center px-4 py-2 rounded-md text-white bg-[#ff3636] w-full active:bg-black `}>Rent this Van</button>
             </div>
             
         </div>}
