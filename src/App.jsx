@@ -4,6 +4,7 @@ import Header from './Components/Header';
 import Home from './Components/Home';
 import About from './Components/About';
 import Van from './Components/Van';
+import VansDetails from './Components/VansDetails';
 import './server';
 
 export default function App(){
@@ -14,6 +15,7 @@ export default function App(){
         <Route path="/" element={<Home/>}/>
         <Route path="/about" element={<About/>}/>
         <Route path="/van" element={<Van/>}/>
+        <Route path="/van/:id" element={<VansDetails/>}/>
         <Route path="*" element={<h1>404 Not Found</h1>}/>
       </Routes>
     </Router>
