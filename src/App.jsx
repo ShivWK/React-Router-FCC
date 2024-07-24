@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './Components/Header';
+import Layout from './Components/Layout';
 import Home from './Components/Home';
 import About from './Components/About';
 import Van from './Components/Van';
@@ -10,15 +10,15 @@ import './server';
 export default function App(){
   return (
     <Router>
-      <Header/>
       <Routes>
-        <Route path="/" element={<Home/>}/>
-        <Route path="/about" element={<About/>}/>
-        <Route path="/van" element={<Van/>}/>
-        <Route path="/van/:id" element={<VansDetails/>}/>
-        <Route path="*" element={<h1>404 Not Found</h1>}/>
+        <Route element={<Layout/>}>
+          <Route path="/" element={<Home/>}/>
+          <Route path="/about" element={<About/>}/>
+          <Route path="/van" element={<Van/>}/>
+          <Route path="/van/:id" element={<VansDetails/>}/>
+          <Route path="*" element={<h1>404 Not Found</h1>}/>
+        </Route>    
       </Routes>
-      
     </Router>
   )
 }origin 
