@@ -25,7 +25,7 @@ export default function VansDetails() {
     return (
         <>
             {Loading ? <h1 className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</h1> : <div className='w-fit my-10'>
-                <img className='md:w-96 w-full mx-auto rounded-md' src={specificVan.imageUrl} alt="van picture" />
+                <img className='md:w-96 w-11/12 mx-auto rounded-md' src={specificVan.imageUrl} alt="van picture" />
                 <div className='mx-auto w-11/12'>
                     <span className={`inline-flex my-1 items-center justify-center px-4 py-1 mt-2 rounded-md text-white ${specificVan.type == 'simple' ? 'bg-[#b43333]' : (specificVan.type == 'luxury' ? 'bg-[#0c0702]' : 'bg-[rgb(4,80,35)]')} w-fit`}>{specificVan.type}</span>
                     <h2 className='text-3xl font-semibold my-2'>{specificVan.name}</h2>
