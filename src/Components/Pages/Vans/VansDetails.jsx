@@ -3,8 +3,6 @@ import { useParams } from 'react-router-dom';
 
 export default function VansDetails() {
     let van = useParams();
-
-    // console.log(van.id);
     let [specificVan, setSpecificVan] = useState({});
     let [Loading, setLoading] = useState(true);
     useEffect(() => {
@@ -17,11 +15,9 @@ export default function VansDetails() {
                 // if(!Array.isArray(value.vans)) throw new Error("Response is not an Array");
                 setSpecificVan(value.vans);
                 setLoading(false);
-                // console.log(value.vans)
             })
     }, []) //If we dont give this empty array then useEffect will call the callback again and again 
 
-    // console.log(specificVan)
     return (
         <>
             {Loading ? <h1 className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</h1> : <div className='w-fit my-10'>
@@ -42,4 +38,4 @@ export default function VansDetails() {
     )
 }
 
-//when encounter this error "Objects are not valid as a React child (found: object with keys {id}). If you meant to render a collection of children, use an array instead." this mean in return of our component we are returning an object (directly w/o any maniplation) and we cant render object directly in react Arrays can be given but not an object like {id : 3} here we wanna return {id : 3} itself. We can return value of id but not the object itself.
+//when encounter this error "Objects are not valid as a React child (found: object with keys {id}). If you meant to render a collection of children, use an array instead." this mean in return of our component we are returning an object (directly w/o any maniplation) and we cant render object directly in react. Arrays can be given but not an object like {id : 3} here we wanna return {id : 3} itself. We can return value of id but not the object itself.

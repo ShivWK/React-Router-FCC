@@ -31,7 +31,11 @@ export default function App(){
                 <Route path="income" element={<Income/>}/>
                 <Route path="reviews" element={<Reviews/>}/> 
                 <Route path="vans" element={<HostVans/>}/> 
-                <Route path="vans/:id" element={<HostVansDetails/>}/> 
+                <Route path="vans/:id" element={<HostVansDetails/>}>
+                    <Route></Route>
+                    <Route></Route>
+                    <Route></Route>
+                </Route> 
             </Route> 
           <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
         </Route> 
