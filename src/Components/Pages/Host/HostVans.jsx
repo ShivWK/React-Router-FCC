@@ -5,7 +5,6 @@ export default function HostVans() {
     let [vans, setVans] = useState([]);
     let [loading, setLoading] = useState(true)
 
-
     useEffect(() => {
         fetch('/api/host/vans').then((response) => {
             if (!response.ok) {
@@ -23,24 +22,19 @@ export default function HostVans() {
         })
     }, [vans]);
 
-    
-
     const SelectedVans = vans.map((data) => {
         return (
             <Link to={`/host/vans/${data.id}`} key={data.id}>
                 <div  className='my-4 p-3 w-full flex gap-4 bg-white items-center'>
-                    <img className='md:w-[8%] md:h-[80%] h-20 w-[20%]' src={data.imageUrl} alt="van pic" />
+                    <img className='md:w-[8%] md:h-[80%] h-20 w-[25%]' src={data.imageUrl} alt="van pic" />
                     <div className='self-start'>
                         <h2 className='text-xl font-semibold'>{data.name}</h2>
                         <p>{data.price}/day</p>
                     </div>
                 </div>
-            </Link>
-            
+            </Link>            
         )
-
     })
-
 
     return (
         <section className='pb-12'>
@@ -53,6 +47,5 @@ export default function HostVans() {
         </section>
 
     )
-
 
 }
