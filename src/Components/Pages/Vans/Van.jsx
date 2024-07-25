@@ -42,7 +42,7 @@ export default function Van(){
 
     return (
         <div className='p-2 mx-auto w-full'>
-            <div className='flex gap-2 md:gap-3 flex-wrap mx-auto justify-between w-full'>
+            <div className='flex gap-2 md:gap-3 pb-12 flex-wrap mx-auto justify-between w-full'>
                 {loading? <p className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</p> : vansList}
             </div>
         </div>

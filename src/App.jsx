@@ -10,6 +10,8 @@ import Income from './Components/Pages/Host/Income';
 import Reviews from './Components/Pages/Host/Reviews';
 import HostLayout from './Components/HostLayout';
 import './server';
+import HostVans from './Components/Pages/Host/HostVans';
+import HostVansDetails from './Components/Pages/Host/HostVansDetails';
 
 
 export default function App(){
@@ -28,6 +30,8 @@ export default function App(){
                 {/* if we dont give route here then that components content won't be show on page althoug we create link to navigate to that page but we arent handling that url parameter as route so no render for that*/}
                 <Route path="income" element={<Income/>}/>
                 <Route path="reviews" element={<Reviews/>}/> 
+                <Route path="vans" element={<HostVans/>}/> 
+                <Route path="vans/:id" element={<HostVansDetails/>}/> 
             </Route> 
           <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
         </Route> 
