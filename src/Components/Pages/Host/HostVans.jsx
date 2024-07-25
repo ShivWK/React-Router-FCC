@@ -25,7 +25,7 @@ export default function HostVans() {
     const SelectedVans = vans.map((data) => {
         return (
             <Link to={`/host/vans/${data.id}`} key={data.id}>
-                <div  className='my-4 p-3 w-full flex gap-4 bg-white items-center'>
+                <div  className='md:my-4 my-2 p-3 w-full flex gap-4  bg-white items-center'>
                     <img className='md:w-[8%] md:h-[80%] h-20 w-[25%]' src={data.imageUrl} alt="van pic" />
                     <div className='self-start'>
                         <h2 className='text-xl font-semibold'>{data.name}</h2>
@@ -40,7 +40,7 @@ export default function HostVans() {
         <section className='pb-12'>
             <div className='px-[10px] w-full'>
                 <h1 className='font-bold text-3xl'>Your listed vans</h1>
-                <div className='flex flex-col'>
+                <div className='flex flex-col '>
                     {loading ? <h1 className='text-2xl font-semibold text-center mt-52'>Loading...</h1> : SelectedVans}
                 </div>
             </div>
