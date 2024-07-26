@@ -12,13 +12,16 @@ import HostLayout from './Components/HostLayout';
 import './server';
 import HostVans from './Components/Pages/Host/HostVans';
 import HostVansDetails from './Components/Pages/Host/HostVansDetails';
+import HostVanDetails from './Components/Pages/Host/HostVanDetails'
+import HostVanPricing from './Components/Pages/Host/HostVanPricing'
+import HostVanPhotos from './Components/Pages/Host/HostVanPhotos'
 
 
 export default function App(){
   return (
     <Router>
       <Routes>
-        <Route element={<Layout/>}>
+        <Route path='/' element={<Layout/>}>
         {/* initial '/' will be given by the react itself */}
           <Route index element={<Home/>}/>
           <Route path="about" element={<About/>}/>
@@ -32,9 +35,9 @@ export default function App(){
                 <Route path="reviews" element={<Reviews/>}/> 
                 <Route path="vans" element={<HostVans/>}/> 
                 <Route path="vans/:id" element={<HostVansDetails/>}>
-                    <Route/>
-                    <Route/>
-                    <Route/>
+                    <Route index element={<HostVanDetails/>}/>
+                    <Route path='vanPricing' element={<HostVanPricing/>}/>
+                    <Route path='vanPhotos' element={<HostVanPhotos/>}/>
                 </Route> 
             </Route> 
           <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
@@ -43,4 +46,5 @@ export default function App(){
       </Routes>
     </Router>
   )
-}origin 
+} 
+// route element = outlet
