@@ -36,7 +36,7 @@ export default function HostVansDetails() {
                 <p className='font-semibold'>{myVan.price}<span>/day</span></p>
             </div>
         </div>
-        <nav className='my-4 flex md:gap-3 gap-4'>
+        <nav className=' flex md:gap-3 gap-4'>
                         <NavLink to='' className={({ isActive }) => `hover:font-semibold ${isActive ? 'underline' : ''}`} style={({ isActive }) => {
                             return {
                                 fontWeight: isActive ? '700' : ''
@@ -64,8 +64,8 @@ export default function HostVansDetails() {
 
     return (
         <>
-            <section className='px-[10px] bg-white'>
-                <Link className='mt-4 mb-8 underline text-sm font-semibold' onClick={backHandler}>back to all vars</Link>
+            <section className='px-[10px] bg-white py-1 pb-2'>
+                <Link className='mb-8 underline text-sm font-semibold' onClick={backHandler}>back to all vars</Link>
                 <div className=' w-full'>
                     {loading ? <p className='text-xl font-semibold text-center'>Loading...</p> : myVanDetails}           
                 </div>
