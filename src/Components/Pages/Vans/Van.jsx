@@ -53,10 +53,10 @@ export default function Van(){
     return (
         <div className='p-2 mx-auto w-full'>
             <nav className='flex md:gap-4 gap-2 px-[10px] my-4'>
-                <NavLink to='?type=simple' className='border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[#b43333] text-white'>Simple</NavLink>
-                <NavLink to='?type=rugged' className='border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[rgb(4,80,35)] text-white'>Rugged</NavLink>
-                <NavLink to='?type=luxury' className='border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[#0c0702] text-white'>Luxury</NavLink>
-                <NavLink to='.' className='border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[rgb(116,250,82)] text-red-700'>Clear</NavLink>
+                <NavLink to='?type=simple' className='active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[#b43333] text-white'>Simple</NavLink>
+                <NavLink to='?type=rugged' className='active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[rgb(4,80,35)] text-white'>Rugged</NavLink>
+                <NavLink to='?type=luxury' className='active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[#0c0702] text-white'>Luxury</NavLink>
+                <NavLink to='.' className='active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[rgb(116,250,82)] text-red-700'>Clear</NavLink>
 
                 {/* to clear out the url to remove filter we can goive ''  in to of clear button and we can also give '.' because . point the current directory which is van so whole url will change to go to the van page that's our parent page or dir withount any search param*/}
 
