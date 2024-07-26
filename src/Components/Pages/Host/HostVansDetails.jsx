@@ -45,14 +45,26 @@ export default function HostVansDetails() {
         <>
             <section className='px-[10px]'>
                 <Link className='mt-4 mb-8 underline text-sm font-semibold' onClick={backHandler}>back to all vars</Link>
-                <div className=' w-full border-2'>
+                <div className=' w-full'>
                     {loading ? <p className='text-xl font-semibold text-center'>Loading...</p> : myVanDetails}
-                    <nav className='my-4 flex md:gap-3 gap-4 px-2'>
-                        <NavLink to=''>link 1</NavLink>
-                        <NavLink to=''>link 1</NavLink>
+                    <nav className='my-4 flex md:gap-3 gap-4'>
+                        <NavLink to='' className={({isActive})=>`hover:font-semibold ${isActive ? 'underline' : ''}` } style={({ isActive }) => {
+                    return {
+                        fontWeight: isActive ? '700' : ''
+                    }
+                }}>Details</NavLink>
 
-                        <NavLink to=''>link 1</NavLink>
-
+                        <NavLink to='' className={({isActive})=>`hover:font-semibold ${isActive ? 'underline' : ''}` } style={({ isActive }) => {
+                    return {
+                        fontWeight: isActive ? '700' : ''
+                    }
+                }}>Pricing</NavLink>
+                
+                        <NavLink to='' className={({isActive})=>`hover:font-semibold ${isActive ? 'underline' : ''}` } style={({ isActive }) => {
+                    return {
+                        fontWeight: isActive ? '700' : ''
+                    }
+                }}>Photos</NavLink>
                     </nav>
                 </div>
                 <Outlet/>
