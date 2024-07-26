@@ -30,7 +30,7 @@ export default function HostVansDetails() {
     const myVanDetails = <div>
         <div className='flex gap-3 md:gap-4 my-3'>
             <img src={myVan.imageUrl} className='md:w-[15%] md:h-[85%] w-[30%] h-[90%]' alt='van-image' />
-            <div className='flex flex-col gap-3 md:gap-4 justify-center'>
+            <div className='flex flex-col gap-2 md:gap-4 justify-center'>
                 <span className={`inline-flex my-1 items-center md:px-4 md:py-1 px-3 py-0 rounded-md text-white ${myVan.type == 'simple' ? 'bg-[#b43333]' : (myVan.type == 'luxury' ? 'bg-[#0c0702]' : 'bg-[rgb(4,80,35)]')} w-fit`}>{myVan.type}</span>
                 <p className='text-2xl font-semibold'>{myVan.name}</p>
                 <p className='font-semibold'>{myVan.price}<span>/day</span></p>
