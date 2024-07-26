@@ -26,8 +26,8 @@ export default function HostVans() {
         return (
             <Link to={`/host/vans/${data.id}`} key={data.id}>
                 <div  className='md:my-4 my-2 p-3 w-full flex gap-4  bg-white items-center'>
-                    <img className='md:w-[8%] md:h-[80%] h-20 w-[25%]' src={data.imageUrl} alt="van pic" />
-                    <div className='self-start'>
+                    <img className='md:w-[8%] md:h-[70%] h-20 w-[25%]' src={data.imageUrl} alt="van pic" />
+                    <div className=' flex justify-center flex-col'>
                         <h2 className='text-xl font-semibold'>{data.name}</h2>
                         <p>{data.price}/day</p>
                     </div>

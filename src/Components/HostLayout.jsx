@@ -4,7 +4,7 @@ import { NavLink, Outlet } from 'react-router-dom'
 export default function HostLayout() {
     return (
         <>
-            <nav className='h-10 flex mb-5 md:gap-4 px-[10px] gap-3 items-center justify-start' >
+            <nav className='h-10 flex mb-2 md:gap-4 px-[10px] gap-3 items-center justify-start' >
                 <NavLink to="/host" end className={({ isActive }) =>`hover:font-semibold ${isActive ? 'underline' : ''}`
                 } style={({ isActive }) => {return {fontWeight: isActive ? '700' : '' }}}>Dashboard</NavLink>
 
