@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 
 export default function VansDetails() {
     let van = useParams();
@@ -20,7 +20,9 @@ export default function VansDetails() {
 
     return (
         <>
+        <Link className='my-4 md:my-6 pl-[10px] text-sm font-semibold' to=".." relative='path'>&#8592; <span className='underline'>back to all vars</span></Link>
             {Loading ? <h1 className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</h1> : <div className='w-fit my-10'>
+                
                 <img className='md:w-96 w-11/12 mx-auto rounded-md' src={specificVan.imageUrl} alt="van picture" />
                 <div className='mx-auto w-11/12'>
                     <span className={`inline-flex my-1 items-center justify-center px-4 py-1 mt-3 rounded-md text-white ${specificVan.type == 'simple' ? 'bg-[#b43333]' : (specificVan.type == 'luxury' ? 'bg-[#0c0702]' : 'bg-[rgb(4,80,35)]')} w-fit`}>{specificVan.type}</span>

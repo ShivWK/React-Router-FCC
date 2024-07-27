@@ -65,7 +65,7 @@ export default function HostVansDetails() {
     return (
         <>
             <section className='px-[10px] mb-8'>
-                <Link className='my-6 underline text-sm font-semibold' to=".." relative='path'>back to all vars</Link>
+                <Link className='my-6 text-sm font-semibold' to=".." relative='path'>&#8592; <span className='underline'>back to all vars</span></Link>
                 <div className='w-full mt-2'>
                     {loading ? <p className='text-xl font-semibold text-center'>Loading...</p> : myVanDetails}            
                 </div>      
