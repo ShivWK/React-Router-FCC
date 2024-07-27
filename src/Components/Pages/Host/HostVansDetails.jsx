@@ -20,7 +20,6 @@ export default function HostVansDetails() {
                 else return response.json();
             })
             .then((data) => {
-                // console.log(data.vans)
                 setMyVan(data.vans[0]);
                 setLoading(false);
             })
@@ -63,10 +62,9 @@ export default function HostVansDetails() {
         history.back();
     }
 
-
     return (
         <>
-            <section className='px-[10px] pb-5'>
+            <section className='px-[10px] mb-8'>
                 <Link className='mb-8 underline text-sm font-semibold' to=".." relative='path'>back to all vars</Link>
                 <div className='w-full mt-2'>
                     {loading ? <p className='text-xl font-semibold text-center'>Loading...</p> : myVanDetails}  

@@ -30,7 +30,7 @@ export default function App(){
             <Route path="host" element={<HostLayout/>}>
             {/* we haven't given / in host layout because it's child of main layout */}
                 <Route index element={<Dashboard/>}/>
-                {/* if we dont give route here then that components content won't be show on page althoug we create link to navigate to that page but we arent handling that url parameter as route so no render for that*/}
+                {/* if we dont give route here then that components content won't be show on page although we create link to navigate to that page but we arent handling that url parameter as route so no render for that*/}
                 <Route path="income" element={<Income/>}/>
                 <Route path="reviews" element={<Reviews/>}/> 
                 <Route path="vans" element={<HostVans/>}/> 

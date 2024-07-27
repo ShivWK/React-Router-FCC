@@ -14,6 +14,10 @@ export default function Van() {
 
     const whatToFetch = searchParam.get('type');
 
+    console.log(whatToFetch);
+
+    // we can use whattofetch to check whether type is present or not mreans filter is applied or not, because when no filter no type attribute means whattofetch will be null fslse 
+
     useEffect(() => {
         fetch("/api/vans")
             .then((data) => {
@@ -51,6 +55,29 @@ export default function Van() {
     </div>)
     );
 
+    function genNewSearchParamString(key, value) {
+        const sp = new URLSearchParams(searchParam);
+
+        if (value === null) {
+            sp.delete(key);
+        } else {
+            sp.set(key, value);
+        }
+        return `?${sp.toString()}`;
+    }
+
+    function handleFilterChange(key, value){
+        setSearchParams((prev)=>{
+            const newParam = new URLSearchParams(prev);
+            if(value === null){
+                newParam.delete(key);
+            }else{
+                newParam.set(key , value)
+            }
+            return newParam;
+        })
+    }
+
     return (
         <div className='p-2 mx-auto w-full'>
             <nav className='flex md:gap-4 gap-2 px-[10px] my-4'>
@@ -59,28 +86,41 @@ export default function Van() {
                 className= 'active:bg-white active:text-black  rounded-md  py-1 w-20 flex items-center justify-center bg-[#b43333] text-white'
                 >Simple</NavLink> */}
 
-                <button
+                {/* <NavLink to={genNewSearchParamString('type', "simple")}
+                // we want it to run as the document is loaded so that to attribute can get its value
+                    className='active:bg-white active:text-black  rounded-md  py-1 w-20 flex items-center justify-center bg-[#b43333] text-white'
+                >Simple</NavLink>
+
+                <NavLink to={genNewSearchParamString("type", "rugged")} className='active:bg-white active:text-black  rounded-md py-1 w-20 flex items-center justify-center bg-[rgb(4,80,35)] text-white'>Rugged</NavLink>
+
+                <NavLink to={genNewSearchParamString("type", "luxury")} className='active:bg-white active:text-black  rounded-md py-1 w-20 flex items-center justify-center bg-[#0c0702] text-white'>Luxury</NavLink>
+
+                <NavLink to={genNewSearchParamString("type", null)} className='active:bg-white active:text-black  rounded-md  py-1 w-20 flex items-center justify-center bg-[rgb(116,250,82)] text-red-700'>Clear</NavLink> */}
+
+                {/* <button
                     onClick={() => setSearchParams({ type: 'simple' })}
                     className='active:bg-white active:text-black  rounded-md  py-1 w-20 flex items-center justify-center bg-[#b43333] text-white'
+                >Simple</button> */}
+
+                <button
+                    onClick={() => handleFilterChange( "type" ,'simple')}
+                    className={`active:bg-white active:text-black  rounded-md  py-1 w-20 flex items-center justify-center ${whatToFetch === 'simple' ? 'bg-[#b43333]' : 'bg-gray-400'} text-white`}
                 >Simple</button>
 
-                <button onClick={() => setSearchParams("type=rugged")} className='active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[rgb(4,80,35)] text-white'>Rugged</button>
+                <button onClick={() => handleFilterChange("type" ,"rugged")} className={`active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center  ${whatToFetch === 'rugged' ? 'bg-[rgb(4,80,35)]' : 'bg-gray-400'} text-white`}>Rugged</button>
 
-                <button onClick={() => setSearchParams("?type=luxury")} className='active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[#0c0702] text-white'>Luxury</button>
+                <button onClick={() => handleFilterChange("type" ,"luxury")} className={`active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center ${whatToFetch === 'luxury' ? 'bg-[#0c0702]' : 'bg-gray-400' } text-white`}>Luxury</button>
 
-                <NavLink to='.' className='active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center bg-[rgb(116,250,82)] text-red-700'>Clear</NavLink>
+                {whatToFetch ? <button
+                onClick={()=>handleFilterChange("type",null)}
+                className= 'active:bg-white active:text-black  rounded-md  py-1 w-20 flex items-center justify-center bg-[#b43333] text-white'
+                >Clear</button> : null}
+                
+                {/* dont use link or navlink to give onClick event they might not work properly use Button instead */}
 
                 {/* to clear out the url to remove filter we can goive ''  in to of clear button and we can also give '.' because . point the current directory which is van so whole url will change to go to the van page that's our parent page or dir withount any search param*/}
 
                 {/* instead of using to attribute in navlink we can use useSearchParams setter function the data we will give that will directly given to the url  */}
-
-                {/* <button
-                onClick={()=>setSearchParams({type : 'simple'})}
-                className= 'active:bg-white active:text-black  rounded-md  py-1 w-20 flex items-center justify-center bg-[#b43333] text-white'
-                >Simple</Button> 
-                
-                dont use link or navlink to give onClick event they might not work properly use Button instead
-                */}
 
             </nav>
 
