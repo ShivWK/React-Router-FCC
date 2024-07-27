@@ -27,7 +27,7 @@ export default function App(){
           <Route path="about" element={<About/>}/>
           <Route path="van" element={<Van/>}/>
           <Route path="van/:id" element={<VansDetails/>}/>
-            <Route path="host" element={<HostLayout/>}>
+          <Route path="host" element={<HostLayout/>}>
             {/* we haven't given / in host layout because it's child of main layout */}
                 <Route index element={<Dashboard/>}/>
                 {/* if we dont give route here then that components content won't be show on page although we create link to navigate to that page but we arent handling that url parameter as route so no render for that*/}
