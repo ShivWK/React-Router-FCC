@@ -104,12 +104,12 @@ export default function Van() {
 
                 <button
                     onClick={() => handleFilterChange( "type" ,'simple')}
-                    className={`active:bg-white active:text-black  rounded-md  py-1 w-20 flex items-center justify-center ${whatToFetch === 'simple' ? 'bg-[#b43333]' : 'bg-gray-400'} text-white`}
+                    className={`active:bg-white active:text-black hover:bg-[#b43333]  rounded-md  py-1 w-20 flex items-center justify-center ${whatToFetch === 'simple' ? 'bg-[#b43333]' : 'bg-gray-400'} text-white`}
                 >Simple</button>
 
-                <button onClick={() => handleFilterChange("type" ,"rugged")} className={`active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center  ${whatToFetch === 'rugged' ? 'bg-[rgb(4,80,35)]' : 'bg-gray-400'} text-white`}>Rugged</button>
+                <button onClick={() => handleFilterChange("type" ,"rugged")} className={`active:bg-white active:text-black border-1 rounded-md hover:bg-[rgb(4,80,35)] py-1 w-20 flex items-center justify-center  ${whatToFetch === 'rugged' ? 'bg-[rgb(4,80,35)]' : 'bg-gray-400'} text-white`}>Rugged</button>
 
-                <button onClick={() => handleFilterChange("type" ,"luxury")} className={`active:bg-white active:text-black border-1 rounded-md  py-1 w-20 flex items-center justify-center ${whatToFetch === 'luxury' ? 'bg-[#0c0702]' : 'bg-gray-400' } text-white`}>Luxury</button>
+                <button onClick={() => handleFilterChange("type" ,"luxury")} className={`active:bg-white active:text-black border-1 rounded-md hover:bg-[#0c0702] py-1 w-20 flex items-center justify-center ${whatToFetch === 'luxury' ? 'bg-[#0c0702]' : 'bg-gray-400' } text-white`}>Luxury</button>
 
                 {whatToFetch ? <button
                 onClick={()=>handleFilterChange("type",null)}
