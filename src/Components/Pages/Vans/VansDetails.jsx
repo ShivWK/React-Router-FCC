@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 
 export default function VansDetails() {
+    const location = useLocation();
+    // console.log(location);
+
     let van = useParams();
     let [specificVan, setSpecificVan] = useState({});
     let [Loading, setLoading] = useState(true);
@@ -18,9 +21,18 @@ export default function VansDetails() {
             })
     }, []) //If we dont give this empty array then useEffect will call the callback again and again 
 
+    const search = location.state?.type || 'all';
+
+    // console.log(search.slice(5))
+
     return (
         <>
-        <Link className='my3 md:my-4 pl-[10px] text-sm font-semibold flex items-center' to=".." relative='path'>&#8592; <span className='underline'>back to all vars</span></Link>
+        <Link 
+            className='my3 md:my-4 pl-[10px] text-sm font-semibold flex items-center' 
+            to={`..${location.state.search ? `?${location.state.search}` : ''}`} 
+            relative='path'>&#8592; <span className='underline'>{`back to ${search} vars`}</span>
+        </Link>
+
             {Loading ? <h1 className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</h1> : <div className='w-fit my-10'>
                 
                 <img className='md:w-96 w-11/12 mx-auto rounded-md' src={specificVan.imageUrl} alt="van picture" />

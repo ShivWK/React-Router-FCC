@@ -14,7 +14,7 @@ export default function Van() {
 
     const whatToFetch = searchParam.get('type');
 
-    console.log(whatToFetch);
+    // console.log(whatToFetch);
 
     // we can use whattofetch to check whether type is present or not mreans filter is applied or not, because when no filter no type attribute means whattofetch will be null fslse 
 
@@ -48,7 +48,9 @@ export default function Van() {
 
     const vansList = filtereData.map((data) =>
     (<div key={data.id} className='w-full md:w-60 p-1'>
-        <Link to={`/van/${data.id}`}><img className='rounded-md' src={data.imageUrl} alt="Van Image" /></Link>
+        <Link to={`${data.id}?name`} state={{search : searchParam.toString(), type : whatToFetch}}>
+        <img className='rounded-md' src={data.imageUrl} alt="Van Image" />
+        </Link>
         <h2 className='font-semibold mt-1'>{data.name}</h2>
         <p>{data.price}/day</p>
         <div className={`flex my-1 items-center justify-center px-4 py-2 rounded-md text-white ${data.type == 'simple' ? 'bg-[#b43333]' : (data.type == 'luxury' ? 'bg-[#0c0702]' : 'bg-[rgb(4,80,35)]')} w-fit`}>{data.type}</div>
