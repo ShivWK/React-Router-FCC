@@ -1,25 +1,34 @@
 import { useEffect, useState } from 'react';
 import { useParams, Link, useLocation } from 'react-router-dom';
+import useFetchAPI from '../../FetchAPI';
 
 export default function VansDetails() {
     const location = useLocation();
     // console.log(location);
 
     let van = useParams();
-    let [specificVan, setSpecificVan] = useState({});
-    let [Loading, setLoading] = useState(true);
-    useEffect(() => {
-        fetch(`/api/vans/${van.id}`)
-            .then((data) => {
-                if (!data.ok) throw new Error("Somthing went wrong");
-                else return data.json();
-            })
-            .then((value) => {
-                // if(!Array.isArray(value.vans)) throw new Error("Response is not an Array");
-                setSpecificVan(value.vans);
-                setLoading(false);
-            })
-    }, []) //If we dont give this empty array then useEffect will call the callback again and again 
+    // let [specificVan, setSpecificVan] = useState({});
+    // let [Loading, setLoading] = useState(true);
+    // useEffect(() => {
+    //     fetch(`/api/vans/${van.id}`)
+    //         .then((data) => {
+    //             if (!data.ok) throw new Error("Somthing went wrong");
+    //             else return data.json();
+    //         })
+    //         .then((value) => {
+    //             // if(!Array.isArray(value.vans)) throw new Error("Response is not an Array");
+    //             setSpecificVan(value.vans);
+    //             setLoading(false);
+    //         })
+    // }, []) //If we dont give this empty array then useEffect will call the callback again and again 
+
+    const {vans, loading, error} = useFetchAPI({route : `/api/vans/${van.id}`})
+
+    // console.log(vans);
+
+    if(error){
+        return <div>Error : {error}</div>
+    }
 
     const search = location.state?.type || 'all';
 
@@ -33,15 +42,15 @@ export default function VansDetails() {
             relative='path'>&#8592; <span className='underline'>{`back to ${search} vars`}</span>
         </Link>
 
-            {Loading ? <h1 className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</h1> : <div className='w-fit my-10'>
+            {loading ? <h1 className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</h1> : <div className='w-fit my-10'>
                 
-                <img className='md:w-96 w-11/12 mx-auto rounded-md' src={specificVan.imageUrl} alt="van picture" />
+                <img className='md:w-96 w-11/12 mx-auto rounded-md' src={vans.imageUrl} alt="van picture" />
                 <div className='mx-auto my-3 w-11/12'>
-                    <span className={`inline-flex my-1 items-center justify-center px-4 py-1 mt-3 rounded-md text-white ${specificVan.type == 'simple' ? 'bg-[#b43333]' : (specificVan.type == 'luxury' ? 'bg-[#0c0702]' : 'bg-[rgb(4,80,35)]')} w-fit`}>{specificVan.type}</span>
-                    <h2 className='text-3xl font-semibold my-2'>{specificVan.name}</h2>
+                    <span className={`inline-flex my-1 items-center justify-center px-4 py-1 mt-3 rounded-md text-white ${vans.type == 'simple' ? 'bg-[#b43333]' : (vans.type == 'luxury' ? 'bg-[#0c0702]' : 'bg-[rgb(4,80,35)]')} w-fit`}>{vans.type}</span>
+                    <h2 className='text-3xl font-semibold my-2'>{vans.name}</h2>
 
-                    <span className='text-xl font-semibold my-4 mr-3'>${specificVan.price}/day</span>
-                    <p className='my-2'>{specificVan.description}</p>
+                    <span className='text-xl font-semibold my-4 mr-3'>${vans.price}/day</span>
+                    <p className='my-2'>{vans.description}</p>
                     <button className={`my-2 justify-center px-4 py-2 rounded-md text-white bg-[#ff3636] w-full active:bg-black `}>Rent this Van</button>
                 </div>
 

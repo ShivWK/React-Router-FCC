@@ -15,11 +15,14 @@ import HostVansDetails from './Components/Pages/Host/HostVansDetails';
 import HostVanDetails from './Components/Pages/Host/HostVanDetails'
 import HostVanPricing from './Components/Pages/Host/HostVanPricing'
 import HostVanPhotos from './Components/Pages/Host/HostVanPhotos'
+import ErrorBoundary from './Components/ErrorBoundary';
 
 
 export default function App(){
   return (
+    
     <Router>
+      {/* <ErrorBoundary> */}
       <Routes>
         <Route path='/' element={<Layout/>}>
         {/* initial '/' will be given by the react itself */}
@@ -44,6 +47,7 @@ export default function App(){
         </Route> 
            
       </Routes>
+      {/* </ErrorBoundary> */}
     </Router>
   )
 } 
