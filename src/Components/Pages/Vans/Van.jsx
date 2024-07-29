@@ -4,8 +4,8 @@ import useFetchAPI from '../../FetchAPI';
 
 export default function Van() {
 
-    // let [vanData, setVanData] = useState([]);
-    // let [loading, setLoading] = useState(true)
+    let [vanData, setVanData] = useState([]);
+    let [loading, setLoading] = useState(true)
     let [searchParam, setSearchParams] = useSearchParams();
 
     // console.log(searchParam)
@@ -19,35 +19,35 @@ export default function Van() {
 
     // we can use whattofetch to check whether type is present or not mreans filter is applied or not, because when no filter no type attribute means whattofetch will be null fslse 
 
-    // useEffect(() => {
-    //     fetch("/api/vans")
-    //         .then((data) => {
-    //             // always check the 'ok' status if it's true then proceed further
-    //             if (!data.ok) {
-    //                 throw new Error("Something went wrong");
-    //             } else
-    //                 return data.json()
-    //         })
-    //         .then((actullData) => {
-    //             //before update any state check whether the response data is an array or not if you want to use map function on that 
-    //             if (!Array.isArray(actullData.vans)) {
-    //                 throw new Error("responce isn't an array")
-    //             } else
-    //                 setVanData(actullData.vans)
-    //             // console.log(actullData.vans)
-    //             setLoading(false)
-    //         })
-    //         .catch((error) => {
-    //             console.log(error.message);
-    //         })
-    // }, [])
+    useEffect(() => {
+        fetch("/api/vans")
+            .then((data) => {
+                // always check the 'ok' status if it's true then proceed further
+                if (!data.ok) {
+                    throw new Error("Something went wrong");
+                } else
+                    return data.json()
+            })
+            .then((actullData) => {
+                //before update any state check whether the response data is an array or not if you want to use map function on that 
+                if (!Array.isArray(actullData.vans)) {
+                    throw new Error("responce isn't an array")
+                } else
+                    setVanData(actullData.vans)
+                // console.log(actullData.vans)
+                setLoading(false)
+            })
+            .catch((error) => {
+                console.log(error.message);
+            })
+    }, [])
 
-    const {vans, loading, error} = useFetchAPI({route : `/api/vans`});
-    if(error){
-        return <div>Error : {error}</div>
-    }
+    // const {vans, loading, error} = useFetchAPI({route : `/api/vans`});
+    // if(error){
+    //     return <div>Error : {error}</div>
+    // }
 
-    const filtereData = whatToFetch ? vans.filter((data) => data.type === whatToFetch) : vans;
+    const filtereData = whatToFetch ? vanData.filter((data) => data.type === whatToFetch) : vanData;
 
     //optimise the app we can cash the the data came from api so that it sould not fetch data each time when user come here , mostly in van detail page an van page navigation
 

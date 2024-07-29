@@ -3,31 +3,31 @@ import {Link} from 'react-router-dom';
 import useFetchAPI from '../../FetchAPI';
 
 export default function HostVans() {
-    // let [vans, setVans] = useState([]);
-    // let [loading, setLoading] = useState(true)
+    let [vans, setVans] = useState([]);
+    let [loading, setLoading] = useState(true)
 
-    // useEffect(() => {
-    //     fetch('/api/host/vans').then((response) => {
-    //         if (!response.ok) {
-    //             throw new Error("something went wrong")
-    //         }
-    //         return response.json();
-    //     }).then((data2) => {
-    //         setVans(data2.vans)
-    //         // setLoading(false);
-    //         if(vans.length > 0){
-    //             setLoading(false);
-    //         }
-    //     }).catch((error) => {
-    //         console.log(error.message)
-    //     })
-    // }, [vans]);
+    useEffect(() => {
+        fetch('/api/host/vans').then((response) => {
+            if (!response.ok) {
+                throw new Error("something went wrong")
+            }
+            return response.json();
+        }).then((data2) => {
+            setVans(data2.vans)
+            // setLoading(false);
+            if(vans.length > 0){
+                setLoading(false);
+            }
+        }).catch((error) => {
+            console.log(error.message)
+        })
+    }, [vans]);
 
-    const { vans, loading, error} = useFetchAPI({ route : '/api/host/vans'})
+    // const { vans, loading, error} = useFetchAPI({ route : '/api/host/vans'})
 
-    if(error){
-        return <div>Error : {error}</div>
-    }
+    // if(error){
+    //     return <div>Error : {error}</div>
+    // }
 
     const SelectedVans = vans.map((data) => {
         return (

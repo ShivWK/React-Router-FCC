@@ -7,28 +7,28 @@ export default function VansDetails() {
     // console.log(location);
 
     let van = useParams();
-    // let [specificVan, setSpecificVan] = useState({});
-    // let [Loading, setLoading] = useState(true);
-    // useEffect(() => {
-    //     fetch(`/api/vans/${van.id}`)
-    //         .then((data) => {
-    //             if (!data.ok) throw new Error("Somthing went wrong");
-    //             else return data.json();
-    //         })
-    //         .then((value) => {
-    //             // if(!Array.isArray(value.vans)) throw new Error("Response is not an Array");
-    //             setSpecificVan(value.vans);
-    //             setLoading(false);
-    //         })
-    // }, []) //If we dont give this empty array then useEffect will call the callback again and again 
+    let [vans, setSpecificVan] = useState({});
+    let [loading, setLoading] = useState(true);
+    useEffect(() => {
+        fetch(`/api/vans/${van.id}`)
+            .then((data) => {
+                if (!data.ok) throw new Error("Somthing went wrong");
+                else return data.json();
+            })
+            .then((value) => {
+                // if(!Array.isArray(value.vans)) throw new Error("Response is not an Array");
+                setSpecificVan(value.vans);
+                setLoading(false);
+            })
+    }, []) //If we dont give this empty array then useEffect will call the callback again and again 
 
-    const {vans, loading, error} = useFetchAPI({route : `/api/vans/${van.id}`})
+    // const {vans, loading, error} = useFetchAPI({route : `/api/vans/${van.id}`})
 
-    // console.log(vans);
+    // // console.log(vans);
 
-    if(error){
-        return <div>Error : {error}</div>
-    }
+    // if(error){
+    //     return <div>Error : {error}</div>
+    // }
 
     const search = location.state?.type || 'all';
 
