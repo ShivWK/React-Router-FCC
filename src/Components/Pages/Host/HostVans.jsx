@@ -2,6 +2,13 @@ import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom';
 import useFetchAPI from '../../useFetchApi';
 
+export async function loader() {
+    let response = await fetch('/api/host/vans');
+    let data = await response.json();
+
+    return data.vans;
+}
+
 export default function HostVans() {
     let [vans, setVans] = useState([]);
     let [loading, setLoading] = useState(true)
@@ -26,6 +33,7 @@ export default function HostVans() {
         fetcher('/api/host/vans')
     }, []);
 
+   
     if(loading) {
         return <h1 className='text-2xl font-semibold text-center mt-52'>Loading...</h1>
     }

@@ -18,13 +18,16 @@ import HostLayout from './Components/HostLayout';
 import './server';
 import HostVans from './Components/Pages/Host/HostVans';
 import HostVansDetails from './Components/Pages/Host/HostVansDetails';
-import HostVanDetails from './Components/Pages/Host/HostVanDetails'
-import HostVanPricing from './Components/Pages/Host/HostVanPricing'
-import HostVanPhotos from './Components/Pages/Host/HostVanPhotos'
+import HostVanDetails from './Components/Pages/Host/HostVanDetails';
+import HostVanPricing from './Components/Pages/Host/HostVanPricing';
+import HostVanPhotos from './Components/Pages/Host/HostVanPhotos';
+import { loader as HostVansLoader} from './Components/Pages/Host/HostVans';
+
 // import ErrorBoundary from './Components/ErrorBoundary';
 
 export default function App(){
   
+  // Old routing method
   // return (
     
   //   <Router>
@@ -66,6 +69,9 @@ export default function App(){
 
   //   </Router>
   // )
+
+  // New 6.4+ way of routing
+
   let router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
 
@@ -85,7 +91,7 @@ export default function App(){
 
             <Route path="income" element={<Income/>}/>
             <Route path="reviews" element={<Reviews/>}/> 
-            <Route path="vans" element={<HostVans/>}/> 
+            <Route path="vans" element={<HostVans/>} loader={HostVansLoader} /> 
             <Route path="vans/:id" element={<HostVansDetails/>}>
                 <Route index element={<HostVanDetails/>}/>
                 <Route path='vanPricing' element={<HostVanPricing/>}/>
