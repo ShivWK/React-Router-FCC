@@ -1,5 +1,11 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { BrowserRouter as Router, 
+          Route, 
+          Routes, 
+          createBrowserRouter, 
+          createRoutesFromElements, 
+          RouterProvider
+} from 'react-router-dom';
 import Layout from './Components/Layout';
 import Home from './Components/Pages/Home';
 import About from './Components/Pages/About';
@@ -18,46 +24,81 @@ import HostVanPhotos from './Components/Pages/Host/HostVanPhotos'
 // import ErrorBoundary from './Components/ErrorBoundary';
 
 export default function App(){
-  return (
+  
+  // return (
     
-    <Router>
-      {/* <ErrorBoundary> */}
-      <Routes>
-        <Route path='/' element={<Layout/>}>
+  //   <Router>
+  //     {/* <ErrorBoundary> */}
+  //     <Routes>
+  //       <Route path='/' element={<Layout/>}>
 
-        {/* initial '/' will be given by the react itself */}
+  //       {/* initial '/' will be given by the react itself */}
 
-          <Route index element={<Home/>}/>
-          <Route path="about" element={<About/>}/>
-          <Route path="van" element={<Van/>}/>
-          <Route path="van/:id" element={<VansDetails/>}/>
-          <Route path="host" element={<HostLayout/>}>
+  //         <Route index element={<Home/>}/>
+  //         <Route path="about" element={<About/>}/>
+  //         <Route path="van" element={<Van/>}/>
+  //         <Route path="van/:id" element={<VansDetails/>}/>
+  //         <Route path="host" element={<HostLayout/>}>
           
-            {/* we haven't given / in host layout because it's child of main layout */}
+  //           {/* we haven't given / in host layout because it's child of main layout */}
 
-                <Route index element={<Dashboard/>}/>
+  //               <Route index element={<Dashboard/>}/>
 
-                {/* if we dont give route here then that components content won't be show on page although we create link to navigate to that page but we arent handling that url parameter as route so no render for that, link will only put the give path or url in the url bar but we need to capture that */}
+  //               {/* if we dont give route here then that components content won't be show on page although we create link to navigate to that page but we arent handling that url parameter as route so no render for that, link will only put the give path or url in the url bar but we need to capture that */}
 
-                <Route path="income" element={<Income/>}/>
-                <Route path="reviews" element={<Reviews/>}/> 
-                <Route path="vans" element={<HostVans/>}/> 
-                <Route path="vans/:id" element={<HostVansDetails/>}>
-                    <Route index element={<HostVanDetails/>}/>
-                    <Route path='vanPricing' element={<HostVanPricing/>}/>
-                    <Route path='vanPhotos' element={<HostVanPhotos/>}/>
-                </Route> 
+  //               <Route path="income" element={<Income/>}/>
+  //               <Route path="reviews" element={<Reviews/>}/> 
+  //               <Route path="vans" element={<HostVans/>}/> 
+  //               <Route path="vans/:id" element={<HostVansDetails/>}>
+  //                   <Route index element={<HostVanDetails/>}/>
+  //                   <Route path='vanPricing' element={<HostVanPricing/>}/>
+  //                   <Route path='vanPhotos' element={<HostVanPhotos/>}/>
+  //               </Route> 
+  //           </Route> 
+  //         <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
+  //           {/* we can give <Outlet> in the element attribute in Route */}
+  //         {/* catch all route */}
+
+  //       </Route> 
+  //     </Routes>
+
+  //     {/* </ErrorBoundary> */}
+
+  //   </Router>
+  // )
+  let router = createBrowserRouter(createRoutesFromElements(
+    <Route path='/' element={<Layout/>}>
+
+    {/* initial '/' will be given by the react itself */}
+
+      <Route index element={<Home/>}/>
+      <Route path="about" element={<About/>}/>
+      <Route path="van" element={<Van/>}/>
+      <Route path="van/:id" element={<VansDetails/>}/>
+      <Route path="host" element={<HostLayout/>}>
+      
+        {/* we haven't given / in host layout because it's child of main layout */}
+
+            <Route index element={<Dashboard/>}/>
+
+            {/* if we dont give route here then that components content won't be show on page although we create link to navigate to that page but we arent handling that url parameter as route so no render for that, link will only put the give path or url in the url bar but we need to capture that */}
+
+            <Route path="income" element={<Income/>}/>
+            <Route path="reviews" element={<Reviews/>}/> 
+            <Route path="vans" element={<HostVans/>}/> 
+            <Route path="vans/:id" element={<HostVansDetails/>}>
+                <Route index element={<HostVanDetails/>}/>
+                <Route path='vanPricing' element={<HostVanPricing/>}/>
+                <Route path='vanPhotos' element={<HostVanPhotos/>}/>
             </Route> 
-          <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
-            {/* we can give <Outlet> in the element attribute in Route */}
-          {/* catch all route */}
-
         </Route> 
-      </Routes>
+      <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
+        {/* we can give <Outlet> in the element attribute in Route */}
+      {/* catch all route */}
+  {/* </ErrorBoundary> */}
+  </Route>
+  ))
 
-      {/* </ErrorBoundary> */}
-
-    </Router>
-  )
-} 
+  return <RouterProvider router={router} />
+}
 // route element = outlet                   

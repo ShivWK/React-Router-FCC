@@ -4,7 +4,7 @@ export default function useFetchAPI(setLoading, setData) {
     const [error, setError] = useState(false);
 
     function fetcher(url) {
-        // setLoading(true);
+        setLoading(true);
         fetch(url)
         .then(data => {
             if (!data.ok) {
