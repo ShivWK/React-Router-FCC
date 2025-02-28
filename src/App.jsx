@@ -15,8 +15,7 @@ import HostVansDetails from './Components/Pages/Host/HostVansDetails';
 import HostVanDetails from './Components/Pages/Host/HostVanDetails'
 import HostVanPricing from './Components/Pages/Host/HostVanPricing'
 import HostVanPhotos from './Components/Pages/Host/HostVanPhotos'
-import ErrorBoundary from './Components/ErrorBoundary';
-
+// import ErrorBoundary from './Components/ErrorBoundary';
 
 export default function App(){
   return (
@@ -25,15 +24,21 @@ export default function App(){
       {/* <ErrorBoundary> */}
       <Routes>
         <Route path='/' element={<Layout/>}>
+
         {/* initial '/' will be given by the react itself */}
+
           <Route index element={<Home/>}/>
           <Route path="about" element={<About/>}/>
           <Route path="van" element={<Van/>}/>
           <Route path="van/:id" element={<VansDetails/>}/>
           <Route path="host" element={<HostLayout/>}>
+          
             {/* we haven't given / in host layout because it's child of main layout */}
+
                 <Route index element={<Dashboard/>}/>
-                {/* if we dont give route here then that components content won't be show on page although we create link to navigate to that page but we arent handling that url parameter as route so no render for that*/}
+
+                {/* if we dont give route here then that components content won't be show on page although we create link to navigate to that page but we arent handling that url parameter as route so no render for that, link will only put the give path or url in the url bar but we need to capture that */}
+
                 <Route path="income" element={<Income/>}/>
                 <Route path="reviews" element={<Reviews/>}/> 
                 <Route path="vans" element={<HostVans/>}/> 
@@ -44,11 +49,15 @@ export default function App(){
                 </Route> 
             </Route> 
           <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
+            {/* we can give <Outlet> in the element attribute in Route */}
+          {/* catch all route */}
+
         </Route> 
-           
       </Routes>
+
       {/* </ErrorBoundary> */}
+
     </Router>
   )
 } 
-// route element = outlet
+// route element = outlet                   

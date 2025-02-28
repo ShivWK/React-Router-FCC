@@ -1,35 +1,40 @@
 import React, { useEffect, useState } from 'react'
 import {Link} from 'react-router-dom';
-import useFetchAPI from '../../FetchAPI';
+import useFetchAPI from '../../useFetchApi';
 
 export default function HostVans() {
     let [vans, setVans] = useState([]);
     let [loading, setLoading] = useState(true)
+    let [error, fetcher] = useFetchAPI(setLoading, setVans);
 
     useEffect(() => {
-        fetch('/api/host/vans').then((response) => {
-            if (!response.ok) {
-                throw new Error("something went wrong")
-            }
-            return response.json();
-        }).then((data2) => {
-            setVans(data2.vans)
-            // setLoading(false);
-            if(vans.length > 0){
-                setLoading(false);
-            }
-        }).catch((error) => {
-            console.log(error.message)
-        })
-    }, [vans]);
+        // fetch('/api/host/vans').then((response) => {
+        //     if (!response.ok) {
+        //         throw new Error("something went wrong")
+        //     }
+        //     return response.json();
+        // }).then((data2) => {
+        //     setVans(data2.vans)
+        //     setLoading(false);
+        //     if(vans.length > 0){
+        //         setLoading(false);
+        //     }
+        // }).catch((error) => {
+        //     console.log(error.message)
+        // })
 
-    // const { vans, loading, error} = useFetchAPI({ route : '/api/host/vans'})
+        fetcher('/api/host/vans')
+    }, []);
 
-    // if(error){
-    //     return <div>Error : {error}</div>
-    // }
+    if(loading) {
+        return <h1 className='text-2xl font-semibold text-center mt-52'>Loading...</h1>
+    }
 
-    const SelectedVans = vans.map((data) => {
+    if(error){
+        return <h1 className='text-2xl font-semibold text-center mt-52'>Error : {error}</h1>
+    }
+
+    const SelectedVans = vans.vans.map((data) => {
         return (
             <Link to={data.id} key={data.id}>
                 <div  className='md:my-4 my-2 p-3 w-full flex gap-4  bg-white items-center'>
@@ -48,7 +53,7 @@ export default function HostVans() {
             <div className='px-[10px] w-full'>
                 <h1 className='font-bold text-3xl'>Your listed vans</h1>
                 <div className='flex flex-col '>
-                    {loading ? <h1 className='text-2xl font-semibold text-center mt-52'>Loading...</h1> : SelectedVans}
+                    { SelectedVans}
                 </div>
             </div>
         </section>
