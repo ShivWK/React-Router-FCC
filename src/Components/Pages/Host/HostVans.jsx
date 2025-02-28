@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from 'react'
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState,} from 'react'
+import {Link, useLoaderData } from 'react-router-dom';
 import useFetchAPI from '../../useFetchApi';
 
 export async function loader() {
@@ -10,39 +10,42 @@ export async function loader() {
 }
 
 export default function HostVans() {
-    let [vans, setVans] = useState([]);
-    let [loading, setLoading] = useState(true)
-    let [error, fetcher] = useFetchAPI(setLoading, setVans);
+    // let [vans, setVans] = useState([]);
+    // let [loading, setLoading] = useState(true)
+    // let [error, fetcher] = useFetchAPI(setLoading, setVans);
+    let VansData = useLoaderData();
 
-    useEffect(() => {
-        // fetch('/api/host/vans').then((response) => {
-        //     if (!response.ok) {
-        //         throw new Error("something went wrong")
-        //     }
-        //     return response.json();
-        // }).then((data2) => {
-        //     setVans(data2.vans)
-        //     setLoading(false);
-        //     if(vans.length > 0){
-        //         setLoading(false);
-        //     }
-        // }).catch((error) => {
-        //     console.log(error.message)
-        // })
+    // console.log(VansData);
 
-        fetcher('/api/host/vans')
-    }, []);
+    // useEffect(() => {
+    //     // fetch('/api/host/vans').then((response) => {
+    //     //     if (!response.ok) {
+    //     //         throw new Error("something went wrong")
+    //     //     }
+    //     //     return response.json();
+    //     // }).then((data2) => {
+    //     //     setVans(data2.vans)
+    //     //     setLoading(false);
+    //     //     if(vans.length > 0){
+    //     //         setLoading(false);
+    //     //     }
+    //     // }).catch((error) => {
+    //     //     console.log(error.message)
+    //     // })
+
+    //     fetcher('/api/host/vans')
+    // }, []);
 
    
-    if(loading) {
-        return <h1 className='text-2xl font-semibold text-center mt-52'>Loading...</h1>
-    }
+    // if(loading) {
+    //     return <h1 className='text-2xl font-semibold text-center mt-52'>Loading...</h1>
+    // }
 
-    if(error){
-        return <h1 className='text-2xl font-semibold text-center mt-52'>Error : {error}</h1>
-    }
+    // if(error){
+    //     return <h1 className='text-2xl font-semibold text-center mt-52'>Error : {error}</h1>
+    // }
 
-    const SelectedVans = vans.vans.map((data) => {
+    const SelectedVans = VansData.map((data) => {
         return (
             <Link to={data.id} key={data.id}>
                 <div  className='md:my-4 my-2 p-3 w-full flex gap-4  bg-white items-center'>
