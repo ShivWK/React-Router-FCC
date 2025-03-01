@@ -5,6 +5,9 @@ import useFetchAPI from '../../useFetchApi';
 export async function loader() {
     let response = await fetch('/api/host/vans');
     let data = await response.json();
+    throw {
+        message : "Something went wrong in the fetch request",
+    }
 
     return data.vans;
 }

@@ -22,6 +22,7 @@ import HostVanDetails from './Components/Pages/Host/HostVanDetails';
 import HostVanPricing from './Components/Pages/Host/HostVanPricing';
 import HostVanPhotos from './Components/Pages/Host/HostVanPhotos';
 import { loader as HostVansLoader} from './Components/Pages/Host/HostVans';
+import ErrorComponent from './Components/ErrorComponent';
 
 // import ErrorBoundary from './Components/ErrorBoundary';
 
@@ -91,7 +92,7 @@ export default function App(){
 
             <Route path="income" element={<Income/>}/>
             <Route path="reviews" element={<Reviews/>}/> 
-            <Route path="vans" element={<HostVans/>} loader={HostVansLoader} /> 
+            <Route path="vans" element={<HostVans/>} loader={HostVansLoader} errorElement={<ErrorComponent/>}/> 
             <Route path="vans/:id" element={<HostVansDetails/>}>
                 <Route index element={<HostVanDetails/>}/>
                 <Route path='vanPricing' element={<HostVanPricing/>}/>
