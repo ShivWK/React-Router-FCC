@@ -1,5 +1,6 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import ProfileImg from '../assets/images/profile-user.png';
 
 export default function Header() {
   return (
@@ -40,6 +41,18 @@ export default function Header() {
           }}
         >
           Vans
+        </NavLink>
+        <NavLink
+          className="login-link"
+          to="login"
+          style={({ isActive }) => {
+            return {
+              color: isActive ? "black" : "",
+              textDecorationLine: isActive ? "underline" : null,
+            };
+          }}
+        >
+          <img className="login-icon" src={ProfileImg} alt="acount's icon" />
         </NavLink>
       </nav>
     </header>
