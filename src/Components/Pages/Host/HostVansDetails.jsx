@@ -9,13 +9,14 @@ export async function loader({ params }) {
 }
 
 export default function HostVansDetails() {
-  let van = useParams();
+  // let van = useParams();
 
   //useParam returns an object so use objec destructuring to get value from it
   //const { id } = useParams();
 
   // let [loading, setLoading] = useState(true);
   // let [myVan, setMyVan] = useState([]);
+
   let loaderData = useLoaderData().vans[0];
 
   // useEffect(() => {
@@ -119,11 +120,9 @@ export default function HostVansDetails() {
           &#8592; <span className="underline">back to all vans</span>
         </Link>
         <div className="w-full mt-2">
-          {loading ? (
-            <p className="text-xl font-semibold text-center">Loading...</p>
-          ) : (
+          {
             myVanDetails
-          )}
+          }
         </div>
       </section>
     </>

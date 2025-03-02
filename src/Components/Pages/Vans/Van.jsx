@@ -1,12 +1,21 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link, useSearchParams, NavLink } from 'react-router-dom';
-// import useFetchAPI from '../../FetchAPI';
+import { Link, useSearchParams, NavLink, useLoaderData } from 'react-router-dom';
+
+export async function loader() {
+    let responce = await fetch('api/vans');
+    let data = await responce.json();
+
+    return data;
+}
+
 
 export default function Van() {
 
-    let [vanData, setVanData] = useState([]);
-    let [loading, setLoading] = useState(true)
+    // let [vanData, setVanData] = useState([]);
+    // let [loading, setLoading] = useState(true)
     let [searchParam, setSearchParams] = useSearchParams();
+
+    let vanData = useLoaderData().vans;
 
     // console.log(searchParam)
     // console.log(searchParam.toString());
@@ -19,30 +28,30 @@ export default function Van() {
 
     // we can use whattofetch to check whether type is present or not means filter is applied or not, because when no filter no type attribute means whattofetch will be null fslse 
 
-    useEffect(() => {
-        fetch("/api/vans")
-            .then((data) => {
-                // always check the 'ok' status if it's true then proceed further
-                if (!data.ok) {
-                    throw new Error("Something went wrong");
-                } else
-                    return data.json()
-            })
-            .then((actullData) => {
-                //before update any state check whether the response data is an array or not if you want to use map function on that 
-                if (!Array.isArray(actullData.vans)) {
-                    throw new Error("responce isn't an array")
-                } else {
-                    setVanData(actullData.vans)
-                 setLoading(false)
-                }
-            })
-            .catch((error) => {
-                console.log(error.message);
-            })
+    // useEffect(() => {
+    //     fetch("/api/vans")
+    //         .then((data) => {
+    //             // always check the 'ok' status if it's true then proceed further
+    //             if (!data.ok) {
+    //                 throw new Error("Something went wrong");
+    //             } else
+    //                 return data.json()
+    //         })
+    //         .then((actullData) => {
+    //             //before update any state check whether the response data is an array or not if you want to use map function on that 
+    //             if (!Array.isArray(actullData.vans)) {
+    //                 throw new Error("responce isn't an array")
+    //             } else {
+    //                 setVanData(actullData.vans)
+    //              setLoading(false)
+    //             }
+    //         })
+    //         .catch((error) => {
+    //             console.log(error.message);
+    //         })
 
-            // return () => controller.abort(); // optimization if compo unmounts before fetch coild complete the react will abort the state update
-    }, [])
+    //         // return () => controller.abort(); // optimization if compo unmounts before fetch coild complete the react will abort the state update
+    // }, [])
 
     // const filtereData = whatToFetch ? vanData.filter((data) => data.type === whatToFetch) : vanData;
 
@@ -137,7 +146,7 @@ export default function Van() {
             </nav>
 
             <div className='flex gap-2 md:gap-3 pb-12 px-[10px] flex-wrap mx-auto  w-full'>
-                {loading ? <p className='text-4xl font-semibold absolute top-[50%] -translate-y-[50%] left-[50%] -translate-x-[50%] '>Loading...</p> : vansList}
+                {vansList}
             </div>
         </div>
     )

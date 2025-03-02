@@ -9,8 +9,8 @@ import { BrowserRouter as Router,
 import Layout from './Components/Layout';
 import Home from './Components/Pages/Home';
 import About from './Components/Pages/About';
-import Van from './Components/Pages/Vans/Van';
-import VansDetails from './Components/Pages/Vans/VansDetails';
+import Van , { loader as VanLoader } from './Components/Pages/Vans/Van';
+import VansDetails , { loader as VansDetailsLoader } from './Components/Pages/Vans/VansDetails';
 import Dashboard from './Components/Pages/Host/Dashboard';
 import Income from './Components/Pages/Host/Income';
 import Reviews from './Components/Pages/Host/Reviews';
@@ -77,8 +77,8 @@ export default function App(){
     <Route path='/' element={<Layout/>}>
       <Route index element={<Home/>}/>
       <Route path="about" element={<About/>}/>
-      <Route path="van" element={<Van/>}/>
-      <Route path="van/:id" element={<VansDetails/>}/>
+      <Route path="van" loader={ VanLoader } element={<Van/>}/>
+      <Route path="van/:id" loader={ VansDetailsLoader } element={<VansDetails/>}/>
       <Route path="login" element={<LogIn />}/>
 
       <Route path="host" element={<HostLayout/>} >
