@@ -2,12 +2,11 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams, NavLink, useLoaderData } from 'react-router-dom';
 
 export async function loader() {
-    let responce = await fetch('api/vans');
+    let responce = await fetch('/api/vans');
     let data = await responce.json();
 
     return data;
 }
-
 
 export default function Van() {
 
