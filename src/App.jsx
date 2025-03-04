@@ -22,7 +22,7 @@ import HostVansDetails , {loader as HostVansDetailsLoader} from './Components/Pa
 import HostVanDetails from './Components/Pages/Host/HostVanDetails';
 import HostVanPricing from './Components/Pages/Host/HostVanPricing';
 import HostVanPhotos from './Components/Pages/Host/HostVanPhotos';
-import LogIn from './Components/LogIn';
+import LogIn, { loginAction } from './Components/LogIn';
 import ErrorComponent from './Components/ErrorComponent';
 import { requiredAuth } from './util';
 
@@ -80,7 +80,7 @@ export default function App(){
     <Route path='/' element={<Layout/>}>
       <Route index element={<Home/>}/>  
       <Route path="about" element={<About/>}/>
-      <Route path="login" element={<LogIn />}/>
+      <Route path="login" element={<LogIn />} action={ loginAction }/>
       <Route 
         path="van" 
         loader={ VanLoader } 
@@ -160,7 +160,9 @@ export default function App(){
       <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
       
   </Route>
-  ))
+  ), {
+    context: { user: "HI" }, // ✅ Providing context
+})
 
   return <RouterProvider router={router} />
 }
