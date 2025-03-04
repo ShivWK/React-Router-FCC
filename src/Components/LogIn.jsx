@@ -3,9 +3,15 @@ import { loginUser } from '../api';
 
 export default function LogIn() {
     const [loginFormData, setLoginFormData] = useState({email : '', password : ''});
+    const [status, setStatus] = useState("idle");
+    const [error, setError] = useState(null);
+    
+
 
     function handleSubmit(e) {
         e.preventDefault();
+        setStatus("submitting");
+        setError(null);
 
         (async () => {
             try {
@@ -13,7 +19,10 @@ export default function LogIn() {
                 console.log(response);
             } 
             catch(error) {
-                console.log(error.message);
+                setError(error.message);
+            }
+            finally {
+                setStatus("idel");
             }
         })();
     }
@@ -31,7 +40,8 @@ export default function LogIn() {
     
 
     return <div className="login-container">
-        <h1>Enter Your Credentials to signin</h1>
+        <h1 className='font-bold text-2xl'>LogIn to your account</h1>
+        {error && <h2 className='text-red-600 font-semibold font-serif mt-1'>{error}</h2>}
         <form onSubmit={handleSubmit} className='login-form'>
             <input 
                 type="email" 
@@ -47,7 +57,9 @@ export default function LogIn() {
                 placeholder='Enter Password'
                 value={loginFormData.password}    
             />
-            <button>SignIn</button>
+            <button disabled={status === "submitting"}>
+                {status === "submitting" ? "Logging in..." : "LogIn"}
+            </button>
         </form>
     </div>
 }
