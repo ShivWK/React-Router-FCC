@@ -1,11 +1,21 @@
 import { useState } from 'react';
+import { loginUser } from '../api';
 
 export default function LogIn() {
     const [loginFormData, setLoginFormData] = useState({email : '', password : ''});
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(loginFormData);
+
+        (async () => {
+            try {
+                let response = await loginUser(loginFormData);
+                console.log(response);
+            } 
+            catch(error) {
+                console.log(error.message);
+            }
+        })();
     }
      
     function handleChange(e) {

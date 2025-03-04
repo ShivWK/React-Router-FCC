@@ -1,7 +1,9 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useSearchParams, NavLink, useLoaderData } from 'react-router-dom';
+import { requiredAuth } from '../../../util';
 
 export async function loader() {
+    await requiredAuth();
     let responce = await fetch('/api/vans');
     let data = await responce.json();
 

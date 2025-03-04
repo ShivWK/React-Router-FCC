@@ -4,8 +4,9 @@ import { BrowserRouter as Router,
           Routes, 
           createBrowserRouter, 
           createRoutesFromElements, 
-          RouterProvider
+          RouterProvider,
 } from 'react-router-dom';
+import { redirect  } from 'react-router-dom';
 import Layout from './Components/Layout';
 import Home from './Components/Pages/Home';
 import About from './Components/Pages/About';
@@ -23,6 +24,7 @@ import HostVanPricing from './Components/Pages/Host/HostVanPricing';
 import HostVanPhotos from './Components/Pages/Host/HostVanPhotos';
 import LogIn from './Components/LogIn';
 import ErrorComponent from './Components/ErrorComponent';
+import { requiredAuth } from './util';
 
 // import ErrorBoundary from './Components/ErrorBoundary';
 
@@ -32,6 +34,7 @@ export default function App(){
   // return (
     
   //   <Router>
+
   //     {/* <ErrorBoundary> */}
   //     <Routes>
   //       <Route path='/' element={<Layout/>}>
@@ -75,41 +78,62 @@ export default function App(){
 
   let router = createBrowserRouter(createRoutesFromElements(
     <Route path='/' element={<Layout/>}>
-      <Route index element={<Home/>}/>
+      <Route index element={<Home/>}/>  
       <Route path="about" element={<About/>}/>
-      <Route path="van" loader={ VanLoader } element={<Van/>}/>
-      <Route path="van/:id" loader={ VansDetailsLoader } element={<VansDetails/>}/>
-      <Route path="login" element={<LogIn />}/>
+
+      <Route 
+        path="van" 
+        loader={ VanLoader } 
+        element={<Van/>}
+      />
+
+      <Route 
+        path="van/:id" 
+        loader={ VansDetailsLoader } 
+        element={<VansDetails/>}
+      />
+
+      
 
       <Route path="host" element={<HostLayout/>} >
-            <Route 
+            <Route
               index 
               element={<Dashboard/>}
-              loader={async ()=> {
-                return null;
-              }}
+              loader={ 
+                // async () => await requiredAuth()
+                // We have returned null from the function so that null is passed as return of the loader, loader must pass some value or null otherwise error
+
+                // Also if any fetch operation needs to occur then it would be after await means it will need wait for the authentication before execution, if authetication fails the requiredAuth will redirect the user to login page then no fetch will occur.
+
+                async () => {
+                  const isLoggeedIn = 1;
+
+                  if (!isLoggeedIn) {
+                    return redirect("/login");
+                  }
+
+                  return null;
+                }
+              }
             />
 
             <Route 
               path="income" 
               element={<Income/>}
-              loader={async ()=> {
-                return null;
-              }}
+              loader={async () => await requiredAuth()}
             />
 
             <Route 
               ath="reviews" 
               element={<Reviews/>}
-              loader={async ()=> {
-                return null; 
-              }}
+              loader={async ()=> await requiredAuth()}
             />
 
             <Route
               path="vans" 
               element={<HostVans/>}
-              loader={HostVansLoader} errorElement={<ErrorComponent/>}
+              loader={HostVansLoader} 
+              errorElement={<ErrorComponent/>}
             />  
 
             <Route 
@@ -120,28 +144,23 @@ export default function App(){
                 <Route 
                   index 
                   element={<HostVanDetails/>}
-                  loader={async ()=> {
-                      return null;
-                  }}     
+                  loader={async () => await requiredAuth()}     
                 />
 
                 <Route 
                   path='vanPricing' 
                   element={<HostVanPricing/>}
-                  loader={async ()=> {
-                      return null;
-                  }}
+                  loader={async ()=> await requiredAuth()}
                 />
                 <Route 
                   path='vanPhotos' 
                   element={<HostVanPhotos/>}
-                  loader={async ()=> {
-                      return null;
-                  }}  
+                  loader={async ()=> await requiredAuth()}  
                 />
             </Route> 
         </Route> 
       <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
+      <Route path="login" element={<LogIn />}/>
   </Route>
   ))
 
