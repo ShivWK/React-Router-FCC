@@ -1,17 +1,20 @@
 import { useState } from 'react';
 import { loginUser } from '../api';
+import { useNavigate } from 'react-router-dom';
 
 export default function LogIn() {
     const [loginFormData, setLoginFormData] = useState({email : '', password : ''});
     const [status, setStatus] = useState("idle");
     const [error, setError] = useState(null);
-    
+    const navigate = useNavigate();
 
 
     function handleSubmit(e) {
         e.preventDefault();
         setStatus("submitting");
         setError(null);
+
+        navigate("/host", {replace : true})
 
         (async () => {
             try {

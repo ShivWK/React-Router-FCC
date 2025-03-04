@@ -80,7 +80,7 @@ export default function App(){
     <Route path='/' element={<Layout/>}>
       <Route index element={<Home/>}/>  
       <Route path="about" element={<About/>}/>
-
+      <Route path="login" element={<LogIn />}/>
       <Route 
         path="van" 
         loader={ VanLoader } 
@@ -92,8 +92,6 @@ export default function App(){
         loader={ VansDetailsLoader } 
         element={<VansDetails/>}
       />
-
-      
 
       <Route path="host" element={<HostLayout/>} >
             <Route
@@ -160,7 +158,7 @@ export default function App(){
             </Route> 
         </Route> 
       <Route path="*" element={<h1 className='text-center font-semibold text-4xl'>404 Not Found</h1>}/>
-      <Route path="login" element={<LogIn />}/>
+      
   </Route>
   ))
 
