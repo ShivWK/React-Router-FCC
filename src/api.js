@@ -26,7 +26,12 @@ export async function getHostVans(id) {
     return data.vans
 }
 
+function sleep() {
+       return new Promise(resolve => setTimeout(resolve, 2000));
+}
+
 export async function loginUser(creds) {
+    await sleep()
     const res = await fetch("/api/login",
         { method: "post", body: JSON.stringify(creds) }
     )

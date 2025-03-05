@@ -2,10 +2,10 @@ import React from 'react';
 import { redirect } from 'react-router-dom';
 
 export async function loginLoader() {
-    let status = localStorage.getItem("isLoggedIn");
+    let status = JSON.parse(localStorage.getItem("isLoggedIn"));
 
     if (!status) {
-        throw redirect("/login")
+        throw redirect("/login?You must login first")
     }
 
     return null;
