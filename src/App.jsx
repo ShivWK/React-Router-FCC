@@ -12,7 +12,7 @@ import Home from './Components/Pages/Home';
 import About from './Components/Pages/About';
 import Van , { loader as VanLoader } from './Components/Pages/Vans/Van';
 import VansDetails , { loader as VansDetailsLoader } from './Components/Pages/Vans/VansDetails';
-import Dashboard from './Components/Pages/Host/Dashboard';
+import Dashboard , { loginLoader } from './Components/Pages/Host/Dashboard';
 import Income from './Components/Pages/Host/Income';
 import Reviews from './Components/Pages/Host/Reviews';
 import HostLayout from './Components/HostLayout';
@@ -97,21 +97,8 @@ export default function App(){
             <Route
               index 
               element={<Dashboard/>}
-              loader={ 
-                // async () => await requiredAuth()
-                // We have returned null from the function so that null is passed as return of the loader, loader must pass some value or null otherwise error
-
-                // Also if any fetch operation needs to occur then it would be after await means it will need wait for the authentication before execution, if authetication fails the requiredAuth will redirect the user to login page then no fetch will occur.
-
-                async () => {
-                  const isLoggeedIn = 1;
-
-                  if (!isLoggeedIn) {
-                    return redirect("/login");
-                  }
-
-                  return null;
-                }
+              loader={ loginLoader
+                // Also if any fetch operation needs to occur then it would be after await means it will need wait for the authentication before execution, if authetication fails the requiredAuth will redirect the user to login page then no fetch will occur
               }
             />
 

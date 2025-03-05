@@ -2,9 +2,19 @@ import { useState } from 'react';
 import { loginUser } from '../api';
 import { useNavigate, Form} from 'react-router-dom';
 
-export async function loginAction(obj) {
-    console.log(obj);
+export async function loginAction({ request }) {
+    const formData = await request.formData();
+    let email = formData.get("email");
+    let password = formData.get("password");
 
+    // console.log(obj);
+    try {
+        let response = await loginUser({email, password});
+        localStorage.setItem("isLoggedIn" , true)
+
+    } catch(error) {
+        console.log(error.message);
+    }
     return null;
 }
 
@@ -69,6 +79,7 @@ export default function LogIn() {
             <button>
                  LogIn
             </button>
+            
         </Form>
     </div>
 }

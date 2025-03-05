@@ -17,7 +17,8 @@ export default function HostVansDetails() {
   // let [loading, setLoading] = useState(true);
   // let [myVan, setMyVan] = useState([]);
 
-  let loaderData = useLoaderData().vans[0];
+  let loaderData = useLoaderData();
+  // console.log(loaderData);
 
   // useEffect(() => {
   //   fetch(`/api/host/vans/${van.id}`)
