@@ -24,7 +24,7 @@ export default function LogIn() {
 
 
     return <div className="login-container">
-        <h1 className='font-bold text-2xl'>LogIn to your account</h1>
+        <h1 className='font-bold text-2xl mb-10'>LogIn to your account</h1>
          {error && <h2 className='text-red-600 font-semibold font-serif mt-1'>{error}</h2>} 
         <Form method="POST" className='login-form'>
             <input 

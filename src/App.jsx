@@ -77,7 +77,7 @@ export default function App(){
   // New 6.4+ way of routing
 
   let router = createBrowserRouter(createRoutesFromElements(
-    <Route path='/' element={<Layout/>}>
+    <Route path='/' element={<Layout/>} >
       <Route index element={<Home/>}/>  
       <Route path="about" element={<About/>}/>
       <Route path="login" element={<LogIn />} action={ loginAction }/>
@@ -85,6 +85,7 @@ export default function App(){
         path="van" 
         loader={ VanLoader } 
         element={<Van/>}
+        errorElement={<ErrorComponent/>}
       />
 
       <Route 
@@ -109,7 +110,7 @@ export default function App(){
             />
 
             <Route 
-              ath="reviews" 
+              path="reviews" 
               element={<Reviews/>}
               loader={async ()=> await requiredAuth()}
             />
